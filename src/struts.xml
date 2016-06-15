@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+
+<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	<package name="default" namespace = "/pages" extends = "struts-default" >
+	
+	
+		<action name="h">
+		    <result>
+		    /error.jsp
+		    </result></action>
+		 <action name="releaseA" class="com.assignment.action.ActivityAction" >
+		<result name= "success">/pages/ReleaseSuccessA.html
+		</result></action> 
+		 <action name="releaseC" class="com.assignment.action.CarpoolAction" >
+		<result name= "success">/pages/ReleaseSuccessA.html
+		</result></action> 
+	</package>
+
+</struts>    
