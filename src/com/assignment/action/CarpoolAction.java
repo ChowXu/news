@@ -97,4 +97,9 @@ public class CarpoolAction extends ActionSupport {
 
 	}
 
+	public String loadString() {
+
+		return null;
+	}
+
 }

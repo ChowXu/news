@@ -8,10 +8,9 @@
 	<package name="default" namespace = "/pages" extends = "struts-default" >
 	
 	
-		<action name="h">
-		    <result>
-		    /error.jsp
-		    </result></action>
+		<action name= "json"  class = "com.assignment.action.ActivityAction"  method ="write">
+		</action>
+
 		 <action name="releaseA" class="com.assignment.action.ActivityAction" >
 		<result name= "success">/pages/ReleaseSuccessA.html
 		</result></action> 

@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+header{
+	background-color:#CFF;
+}
+.login{
+	position: absolute; 
+	right:30%;
+	top:0;
+	float:right;
+}
+.login li{
+	float:left;
+	padding:8px,15px;
+	list-style:none;
+	color:#FFF;
+}
+.search{
+	background-color: #9DD9F9;
+	background-image: url(images/teacher2.png);
+	background-repeat: repeat-x;
+	height: 400px;
+
+}
+.shouye{
+	margin:0 auto;
+}
+.content{
+	text-align:center;
+}
+#mission{
+	padding-top:100px;
+	padding-bottom:30px;
+}
+.new_fm{
+	padding:5px;
+}
+.sou{
+	width:400px;
+	height:50px;
+}
+.tijiao{
+	position:relative;
+	left:-10px;
+	top:0;
+	height:55px;
+	width:100px;
+}

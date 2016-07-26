@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+.suoyin{
+	margin:20px;
+}
+.suoyin a:link{
+	color:#03F;
+	text-decoration:none;
+}
+.suoyin a:hover{
+	color:#CCC;
+	background-color:#F69;
+	text-decoration:none;
+}
+.suoyin a:visited{
+	color:#03F;
+	text-decoration:none;
+}
+.nav li{
+	float:left;
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:150px;
+	border-radius:5px;
+	list-style-type:none;
+}
+.content{
+	margin-top:10px;
+	padding:20px;
+}
+
+
