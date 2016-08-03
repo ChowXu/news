@@ -1,5 +1,7 @@
 package com.assignment.servive;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -25,8 +27,8 @@ public class CarpoolService {
 				.getCurrentSession();
 
 		session.beginTransaction();
-		Query query = session.createQuery("from Carpool as car");
-		java.util.List list = query.list();
+		Query query = session.createQuery("from Carpool");
+	    List list = query.list();
 		session.getTransaction().commit();
 
 		return list;
