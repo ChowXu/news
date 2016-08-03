@@ -3,20 +3,22 @@
 <struts>
 
 
-<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
-	<constant name="struts.configuration.xml.reload" value="true"/>
-	<package name="default" namespace = "/pages" extends = "struts-default" >
-	
-	
-		<action name= "json"  class = "com.assignment.action.ActivityAction"  method ="write">
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<package name="Activity" namespace="/pages" extends="struts-default">
+		<action name="releaseA" class="com.assignment.action.ActivityAction">
+			<result name="success">/pages/ReleaseSuccessA.html
+			</result>
 		</action>
-
-		 <action name="releaseA" class="com.assignment.action.ActivityAction" >
-		<result name= "success">/pages/ReleaseSuccessA.html
-		</result></action> 
-		 <action name="releaseC" class="com.assignment.action.CarpoolAction" >
-		<result name= "success">/pages/ReleaseSuccessA.html
-		</result></action> 
+		<action name="showActivity" class="com.assignment.action.ActivityAction" method="query">
+			<result name="query_success">/pages/showActivity.jsp
+			</result>
+		</action>
+		<action name="releaseC" class="com.assignment.action.CarpoolAction">
+			<result name="success">/pages/ReleaseSuccessA.html
+			</result>
+		</action>
 	</package>
+	
 
 </struts>    

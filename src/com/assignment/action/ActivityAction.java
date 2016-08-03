@@ -2,6 +2,7 @@ package com.assignment.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,14 +10,17 @@ import org.apache.struts2.ServletActionContext;
 
 import com.assignment.model.Activity;
 import com.assignment.servive.ActivityService;
-import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class ActivityAction extends ActionSupport {
+public class ActivityAction extends SuperAction {
 
+	// domain model
 	private String name;
 	private String description;
 	private String tele;
+
+	//
+	private ActivityService activityService = new ActivityService();
 
 	public String getName() {
 		return name;
@@ -47,10 +51,20 @@ public class ActivityAction extends ActionSupport {
 		activity.setName(name);
 		activity.setDescription(description);
 		activity.setTele(tele);
-		ActivityService activityService = new ActivityService();
 		activityService.savaActivity(activity);
-
 		return "success";
+
+	}
+
+	// query Activity
+	public String query() {
+		List<Activity> list = activityService.getActivities();
+		if (list != null && list.size() > 0) {
+			session.setAttribute("activity_list", list);
+		} else {
+			session.setAttribute("students_list", null);
+		}
+		return "query_success";
 
 	}
 
@@ -68,7 +82,6 @@ public class ActivityAction extends ActionSupport {
 		// JSON在传递过程中是普通字符串形式传递的，这里简单拼接一个做测试
 		String jsonString = "{\"user\":{\"id\":\"123\",\"name\":\"张三\",\"say\":\"Hello , i am a action to print a json!\",\"password\":\"JSON\"},\"success\":true}";
 		out.println(jsonString);
-
 		out.flush();
 		out.close();
 

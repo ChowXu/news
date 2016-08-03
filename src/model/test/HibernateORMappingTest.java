@@ -36,7 +36,7 @@ public class HibernateORMappingTest {
 	public void testSavaActivity() {
 		Session session = sessionFactory.getCurrentSession();
 		Activity activity = new Activity();
-		activity.setName("ื๖สตั้");
+		activity.setName("hahah");
 		activity.setDescription("this is a sample description");
 		activity.setTele("*******");
 
@@ -112,9 +112,6 @@ public class HibernateORMappingTest {
 	// beforeClass();
 	// }
 
-	public static void consleOut() {
-		System.out.print("hello world");
 
-	}
 
 }

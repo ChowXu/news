@@ -2,6 +2,7 @@ package com.assignment.servive;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.assignment.model.Activity;
@@ -25,8 +26,9 @@ public class ActivityService {
 				.getCurrentSession();
 
 		session.beginTransaction();
-		List<Activity> list = session.createQuery("select * from activity  a ")
-				.list();
+		Query query = session.createQuery("from Activity");
+		List<Activity> list = query.list();
+
 
 		session.getTransaction().commit();
 
