@@ -34,6 +34,7 @@ public class ActivityAction extends SuperAction {
 		return description;
 	}
 
+  
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -62,11 +63,13 @@ public class ActivityAction extends SuperAction {
 		if (list != null && list.size() > 0) {
 			session.setAttribute("activity_list", list);
 		} else {
-			session.setAttribute("students_list", null);
+			session.setAttribute("activity_list", null);
 		}
 		return "query_success";
 
 	}
+	
+	
 
 	public void write() throws IOException {
 
