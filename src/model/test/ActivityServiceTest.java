@@ -1,5 +1,6 @@
 package model.test;
 
+import java.io.IOException;
 import java.util.List;
 
 import net.sf.json.JSONObject;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import com.assignment.model.Activity;
 import com.assignment.model.Carpool;
+import com.assignment.model.Pager;
 import com.assignment.servive.ActivityService;
 import com.assignment.servive.CarpoolService;
 
@@ -27,22 +29,16 @@ public class ActivityServiceTest {
 		// .buildSessionFactory();
 	}
 
+	
+	
 	@Test
-	public void test() {
+	public void test() throws IOException {
 
-		CarpoolService carpoolService = new CarpoolService();
 
-		List<Carpool> list = carpoolService.loadCarpool();
 		ActivityService  activityService = new ActivityService();
-		List<Activity> acitvitylist = activityService.getActivities();
+		Pager<Activity> activitylist = activityService.getActivities("课",1,10);
 		
-		for( Activity activity : acitvitylist){
-			System.out.print(activity.getName());
-			System.out.print(activity.getDescription());
-			System.out.print(activity.getTele());
-			System.out.print(activity.getId());
-			
-		}
+		System.out.println(activitylist.toString());
 
 		
 
