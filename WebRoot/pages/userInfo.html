@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Cumt &mdash; 任务君</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+
+		<!-- Themify Icons -->
+		<link rel="stylesheet" href="css/themify-icons.css">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<!-- Owl Carousel -->
+		<link rel="stylesheet" href="css/owl.carousel.min.css">
+		<!-- Superfish -->
+		<link rel="stylesheet" href="css/superfish.css">
+
+		<!-- Animate.css -->
+		<link rel="stylesheet" href="css/animate.css">
+		<!-- Theme Style -->
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- FOR IE9 below -->
+		<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+		<style type="text/css">
+			#fh5co-main a .icon,
+			a:link {
+				text-decoration: none;
+				border-bottom: 0px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<!-- START #fh5co-header -->
+		<header id="fh5co-header-section" role="header" class="">
+			<div class="container">
+				<h1 id="fh5co-logo" class="pull-left">
+				<a href="homePage.html"><img src="images/logo.png"
+					alt="CUMTASSIGNMENT"></a>
+			</h1>
+				<nav id="fh5co-menu-wrap" role="navigation">
+
+					<ul class="sf-menu" id="fh5co-primary-menu">
+						<li>
+							<a href="homePage.html">首页</a>
+						</li>
+						<li>
+							<a href="releaseActivity.html">任务区</a>
+						</li>
+						<li>
+							<a href="releaseCarpool.html">拼车区</a>
+						</li>
+						<li>
+							<a href="releaseExpress.html">快递区</a>
+						</li>
+						<li>
+							<a href="#">帮助</a>
+						</li>
+
+					</ul>
+				</nav>
+
+			</div>
+		</header>
+
+		<div id="fh5co-hero">
+			<a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
+			<!-- End fh5co-arrow -->
+			<div class="container">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="fh5co-hero-wrap">
+						<div class="fh5co-hero-intro">
+							<h1 class="to-animate hero-animate-1">欢迎来到中国矿业大学任务君</h1>
+							<h2 class="to-animate hero-animate-2"></h2>
+							<p class="to-animate hero-animate-3">
+								<a href="#" class="btn btn-outline btn-lg">Get Started</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="ActivityShow" class="container">
+			<table class="table table-hover col-md-10" id="table">
+				<thead>
+					<caption style="margin-left: 2%;">我发布的活动</caption>
+					<tr>
+						<th>编号</th>
+						<th>活动</th>
+						<th>描述</th>
+						<th>电话</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody class="activityDatalist">
+				</tbody>
+			</table>
+		</div>
+
+		<div id="CarpoolShow" class="container" style="margin-top: 10px">
+			<table class="table table-hover col-md-10">
+				<thead>
+					<caption style="margin-left: 2%;">我发布的拼车</caption>
+					<tr>
+						<th>编号</th>
+						<th>出发时间</th>
+						<th>出发地点</th>
+						<th>目的地</th>
+						<th>已报名人数</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody class="carpoolDatalist">
+				</tbody>
+			</table>
+		</div>
+
+		<div id="ExpressShow" class="container" style="margin-top: 10px">
+			<table class="table table-hover col-md-10">
+				<thead>
+					<caption style="margin-left: 2%;">我发布的快递</caption>
+					<tr>
+						<th>编号</th>
+						<th>快递公司名称</th>
+						<th>快递编号</th>
+						<th>领取地点</th>
+						<th>联系方式</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody class="expressDatalist">
+				</tbody>
+			</table>
+		</div>
+
+		<div style="height: 300px;"></div>
+
+		<!-- jQuery -->
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.js"></script>
+		<!-- Owl carousel -->
+		<script src="js/owl.carousel.min.js"></script>
+		<!-- Magnific Popup -->
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<!-- Superfish -->
+		<script src="js/superfish.js"></script>
+		<!-- Easy Responsive Tabs -->
+		<script src="js/easyResponsiveTabs.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!--<!-- Main JS -->
+		<script src="js/main.js"></script>
+
+		<script type="text/javascript">
+			var username;
+			$(document).ready(function() {
+
+				$.post("getSession", null, function(data) {
+					if(data == null) {} else {
+
+						username = data.userName;
+						$.post("getRelease!showActivity?userName=" + username, null, function(datalist) {
+							showActivityData(datalist);
+						}, "json");
+						$.post("getRelease!showCarpool?userName=" + username, null, function(datalist) {
+							showCarpoolData(datalist);
+						}, "json");
+						$.post("getRelease!showExpress?userName=" + username, null, function(datalist) {
+							showExpressData(datalist);
+						}, "json");
+					}
+
+				}, "json");
+
+			});
+
+			function showActivityData(datalist) {
+				var activityDataHtml = "";
+				$('.activityDatalist').html("");
+				$.each(datalist, function(index, obj) {
+					activityDataHtml += "<tr>";
+					activityDataHtml += "<td>" + obj.id + "</td>";
+					activityDataHtml += "<td>" + obj.name + "</td>";
+					activityDataHtml += "<td>" + obj.description + "</td>";
+					activityDataHtml += "<td>" + obj.tele + "</td>";
+					activityDataHtml += "<td>" + '<a href="javascript:void(0)" onclick="deleteItem(this)">删除</a>' + "</td>";
+					activityDataHtml += "</tr>";
+				});
+				$(".activityDatalist").append(activityDataHtml);
+			}
+
+			function showCarpoolData(datalist) {
+				var carpoolDataHtml = "";
+				$('.carpoolDatalist').html("");
+				$.each(datalist, function(index, obj) {
+					carpoolDataHtml += "<tr>";
+					carpoolDataHtml += "<td>" + obj.id + "</td>";
+					carpoolDataHtml += "<td>" + obj.beginDate + "</td>";
+					carpoolDataHtml += "<td>" + obj.beginArea + "</td>";
+					carpoolDataHtml += "<td>" + obj.destination + "</td>";
+					carpoolDataHtml += "<td>" + obj.signed + "</td>";
+					carpoolDataHtml += "<td>" + '<a href="javascript:void(0)" onclick="deleteItemC(this)">删除</a>' + "</td>";
+					carpoolDataHtml += "</tr>";
+				});
+				$(".carpoolDatalist").append(carpoolDataHtml);
+			}
+
+			function showExpressData(datalist) {
+				var expressDataHtml = "";
+				$('.expressDatalist').html("");
+				$.each(datalist, function(index, obj) {
+					expressDataHtml += "<tr>";
+					expressDataHtml += "<td>" + obj.id + "</td>";
+					expressDataHtml += "<td>" + obj.name + "</td>";
+					expressDataHtml += "<td>" + obj.num + "</td>";
+					expressDataHtml += "<td>" + obj.description + "</td>";
+					expressDataHtml += "<td>" + obj.tel + "</td>";
+					expressDataHtml += "<td>" + '<a href="javascript:void(0)" onclick="deleteItemE(this)">删除</a>' + "</td>";
+					expressDataHtml += "</tr>";
+				});
+				$(".expressDatalist").append(expressDataHtml);
+			}
+
+			function deleteItem(obj) {
+				var $obj = $(obj);
+				var $parent = $obj.parent().parent();
+				var id = $parent.children('td:first').text();
+				$.post("getRelease!deleteActivity?id=" + id, null, function() {
+					$.post("getRelease!showActivity?userName=" + username, null, function(datalist) {
+						showActivityData(datalist);
+
+					}, "json");
+				}, null);
+
+			}
+
+			function deleteItemC(obj) {
+				var $obj = $(obj);
+				var $parent = $obj.parent().parent();
+				var id = $parent.children('td:first').text();
+				$.post("getRelease!deleteCarpool?id=" + id, null, function() {
+					$.post("getRelease!showCarpool?userName=" + username, null, function(datalist) {
+						showCarpoolData(datalist);
+					}, "json");
+				}, null);
+
+			}
+
+			function deleteItemE(obj) {
+				var $obj = $(obj);
+				var $parent = $obj.parent().parent();
+				var id = $parent.children('td:first').text();
+				$.post("getRelease!deleteExpress?id=" + id, null, function() {
+					$.post("getRelease!showExpress?userName=" + username, null, function(datalist) {
+						showExpressData(datalist);
+					}, "json");
+				}, null);
+
+			}
+		</script>
+
+	</body>
+
+</html>

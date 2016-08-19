@@ -7,18 +7,44 @@
 	<constant name="struts.configuration.xml.reload" value="true" />
 	<package name="Activity" namespace="/pages" extends="struts-default">
 		<action name="releaseA" class="com.assignment.action.ActivityAction">
-			<result name="success">/pages/ReleaseSuccessA.html
+			<result name="success">/pages/showActivity.html
 			</result>
 		</action>
-		<action name="showActivity" class="com.assignment.action.ActivityAction" method="query">
-			<result name="query_success">/pages/showActivity.jsp
+		<action name="showActivity" class="com.assignment.action.ActivityAction">
+			<result name="success">/pages/showActivity.html
 			</result>
 		</action>
 		<action name="releaseC" class="com.assignment.action.CarpoolAction">
-			<result name="success">/pages/ReleaseSuccessA.html
+			<result name="success">/pages/showCarpool.html
 			</result>
 		</action>
+		<action name="showCarpool" class="com.assignment.action.CarpoolAction">
+			<result name="success">/pages/showCarpool.html
+			</result>
+		</action>
+		<action name="releaseE" class="com.assignment.action.ExpressAction">
+			<result name="success">/pages/showExpress.html</result>
+		</action>
+		<action name="showExpress" class="com.assignment.action.ExpressAction">
+			<result name="success">/pages/showExpress.html</result>
+		</action>
+		<action name="getRelease" class="com.assignment.action.ReleaseAction">
+		</action>
+
+		<action name="getSession" class="com.assignment.action.SessionAction" method="getSession">
+		</action>
 	</package>
-	
+	<package name="User" namespace="/user" extends="struts-default">
+		<action name="register" class="com.assignment.action.RegisterAction" method="register">
+			<result name="success">/user/login2.html</result>
+			<result name="failure">/user/register.html</result>
+		</action>
+		<action name="login" class="com.assignment.action.RegisterAction" method="login">
+			<result name="success" type="redirect">/pages/homePage.html</result>
+			<result name="failure">/user/login.html</result>
+		</action>
+
+	</package>
+
 
 </struts>    

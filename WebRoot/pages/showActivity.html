@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Assignment_CUMT</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+
+		<!-- Themify Icons -->
+		<link rel="stylesheet" href="css/themify-icons.css">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<!-- Owl Carousel -->
+		<link rel="stylesheet" href="css/owl.carousel.min.css">
+		<!-- Superfish -->
+		<link rel="stylesheet" href="css/superfish.css">
+
+		<!-- Animate.css -->
+		<link rel="stylesheet" href="css/animate.css">
+		<!-- Theme Style -->
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/pagination.css" />
+
+		<!-- FOR IE9 below -->
+		<!--[if lt IE 9]>
+   <script src="js/respond.min.js"></script>
+   <![endif]-->
+
+	</head>
+
+	<body>
+
+		<!-- START #fh5co-header -->
+		<header id="fh5co-header-section" role="header" class="">
+			<div class="container">
+				<h1 id="fh5co-logo" class="pull-left">
+				<a href="homePage.html"><img src="images/logo.png"
+					alt="CUMTASSIGNMENT"></a>
+			</h1>
+				<nav id="fh5co-menu-wrap" role="navigation">
+
+					<ul class="sf-menu" id="fh5co-primary-menu">
+						<li>
+							<a href="homePage.html">首页</a>
+						</li>
+						<li>
+							<a href="releaseActivity.html">任务区</a>
+						</li>
+						<li>
+							<a href="releaseCarpool.html">拼车区</a>
+						</li>
+						<li>
+							<a href="releaseExpress.html">快递区</a>
+						</li>
+						<li>
+							<a href="#">帮助</a>
+						</li>
+						<li class="fh5co-special" id="login_button">
+							<a href="/Assignment_CUMT/user/register.html">登录/注册</a>
+						</li>
+						<li id="login_icon" style="display:none;">
+							<a href="userInfo.html"> 登录</a>
+						
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</header>
+
+		<div id="fh5co-hero">
+			<a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
+			<!-- End fh5co-arrow -->
+			<div class="container">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="fh5co-hero-wrap">
+						<div class="fh5co-hero-intro">
+							<h1 class="to-animate hero-animate-1">欢迎来到中国矿业大学任务君</h1>
+							<h2 class="to-animate hero-animate-2">在这里，我们会尽其所能，为您提供最优质的服务，让您足不出户便可享受便利的大学生活</h2>
+							<p class="to-animate hero-animate-3">
+								<a href="#" class="btn btn-outline btn-lg">Get Started</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="col-lg-6">
+				<div class="input-group">
+					<input type="text" name="activity" class="form-control search-box"> <span class="input-group-btn">
+					<button class="btn btn-default" type="button" onclick="search();">查找活动</button>
+				</span>
+				</div>
+				<!-- /input-group -->
+			</div>
+		</div>
+		</form>
+		</div>
+		<div class="container">
+
+			<table class="table table-hover col-md-10" id="table">
+
+				<thead>
+					<tr>
+						<th>活动</th>
+						<th>描述</th>
+						<th>电话</th>
+					</tr>
+				</thead>
+				<tbody class="activityDatalist">
+
+				</tbody>
+
+			</table>
+
+			<div id="new-pagination" style="float: right;"></div>
+
+		</div>
+
+		<div style="height:300px">
+
+			<form id="stuForm" method="post" action="showActivity?"></form>
+		</div>
+
+		<!--[if IE]>
+			
+		<![endif]-->
+
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.pagination.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.post("getSession", null, function(data) {
+					if(data == null) {
+
+					} else {
+						$('#login_button').hide();
+						$('#login_icon a').html("hello " + data.userName);
+						$('#login_icon').show();
+
+					}
+
+				}, "json");
+
+				var searchText = $('.search-box').val();
+				$.post("showActivity!write?searchKey =" + searchText, null, function(data) {
+					showActivityData(data.datalist);
+					$("#new-pagination").pagination(data.totalRecords, {
+						items_per_page: data.pageSize,
+						current_page: data.currentPage - 1,
+						load_first_page: false,
+						callback: handlePaginationClick
+					});
+
+				}, "json");
+
+			});
+
+			function showActivityData(datalist) {
+				var activityDataHtml = "";
+				$('.activityDatalist').html("");
+				$.each(datalist, function(index, obj) {
+					activityDataHtml += "<tr>";
+					activityDataHtml += "<td>" + '<img src="images/iconA.png"></img>' + "</td>";
+					activityDataHtml += "<td>" + obj.name + "</td>";
+					activityDataHtml += "<td>" + obj.description + "</td>";
+					activityDataHtml += "<td>" + obj.tele + "</td>";
+					activityDataHtml += "</tr>";
+				});
+				$(".activityDatalist").append(activityDataHtml);
+			}
+
+			function handlePaginationClick(new_page_index, pagination_container) {
+				var searchText = $('.search-box').val();
+				$.post("showActivity!write?currentPage =" + (new_page_index + 1) +
+					"&searchKey =" + searchText, null,
+					function(data) {
+						showActivityData(data.datalist);
+					}, "json")
+
+				return false;
+			}
+
+			function search() {
+				var searchText = $('.search-box').val();
+				searchText = jQuery.trim(searchText);
+				var searchText = $('.search-box').val();
+				$.post("showActivity!write?searchKey =" + searchText, null,
+					function(data) {
+						showActivityData(data.datalist);
+						$("#new-pagination").pagination(data.totalRecords, {
+							items_per_page: data.pageSize,
+							current_page: data.currentPage - 1,
+							load_first_page: false,
+							callback: handlePaginationClick
+						});
+
+					}, "json");
+
+			}
+		</script>
+
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.js"></script>
+		<!-- Owl carousel -->
+		<script src="js/owl.carousel.min.js"></script>
+		<!-- Magnific Popup -->
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<!-- Superfish -->
+		<script src="js/superfish.js"></script>
+		<!-- Easy Responsive Tabs -->
+		<script src="js/easyResponsiveTabs.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!--<!-- Main JS -->
+		<script src="js/main.js"></script>
+
+	</body>
+
+</html>

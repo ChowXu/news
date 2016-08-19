@@ -1,38 +1,63 @@
-.container {
+.header-box {
 	background-image: url(../images/hero6.jpg);
 	background-size: 100% 100%;
-	height: 500px;
-	width:1366px ;
+	height: 600px;
+	width:100% ;
+	overflow: hidden;
 }
-.header-line {
-	height: 50px;
-	width: 1024px;
+.container {
+	height: 78px;
+	width: 990px;
 }
 
 .logo {
-	margin-top: -5px;
+	width: 80px;
+	height: 42px;
+	margin-top: 16px 0 0 0;
 	float: left;
 }
 
-.list {
+.item-list {
 	list-style: none;
+	width: 612px;
+	height: 78px;
+	margin:3px -10px 0px 430px ;
+	
 }
 
-.list li {
+.item-list li {
 	text-align: right;
-	float: right;
-	height: 50px;
-	line-height: 50px;
-	width: 130px;
-	margin: 10 20 10 0;
+	float: left;
+	height: 78px;
+	line-height: 78px;
+	margin: 0 40px 0 0;
 	color: #7373737;
 }
-.list li a:link {
+
+.item-list li a{
+	color:#438192;
+}
+
+
+.item-list li a:link {
 	text-decoration: none;
 }
 
 
-.list li a:hover{
+.item-list li a:hover, .item-list li a:active{
 	text-decoration: none;
+	color: #FFF;
+}
 
+.content {
+	clear: left;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	margin: 180px auto;
+	color: #FFFFFF;
+}
+.container h1 {
+	text-align: center;
+	font-family: "微软雅黑";
 }

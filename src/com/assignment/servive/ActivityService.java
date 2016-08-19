@@ -14,7 +14,7 @@ public class ActivityService {
 	 * 
 	 * @param activity
 	 */
-	public void savaActivity(Activity activity) {
+	public void saveActivity(Activity activity) {
 		Session session = new HibernateUtil().getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		session.save(activity);
@@ -42,7 +42,7 @@ public class ActivityService {
 		Query query = null;
 		Query qry = null;
 		if (key != null && !"".equals(key)) {
-			HQL.append(" where name like :name or description like :description ");
+			HQL.append(" where name like :name or description like :description order by id desc");
 			query = session.createQuery(HQL.toString());
 			query.setParameter("name", "%" + key + "%");
 			query.setParameter("description", "%" + key + "%");
@@ -51,7 +51,7 @@ public class ActivityService {
 			qry.setParameter("name", "%" + key + "%");
 			qry.setParameter("description", "%" + key + "%");
 		} else {
-			query = session.createQuery(HQL.toString());
+			query = session.createQuery(HQL.toString() + " order by id desc");
 			qry = session.createQuery("select count(*) from Activity");
 		}
 		query.setFirstResult(currentIndex);

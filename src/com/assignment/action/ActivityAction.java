@@ -2,10 +2,12 @@ package com.assignment.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import com.alibaba.fastjson.JSON;
 import com.assignment.model.Activity;
 import com.assignment.model.Pager;
+import com.assignment.model.User;
 import com.assignment.servive.ActivityService;
 
 @SuppressWarnings("serial")
@@ -15,11 +17,12 @@ public class ActivityAction extends SuperAction {
 	private String name;
 	private String description;
 	private String tele;
-
 	// search model
 	private String searchKey;
 	private String currentPage;
 	private String pageSize;
+
+	private ActivityService activityService = new ActivityService();
 
 	/*
 	 * 
@@ -29,11 +32,18 @@ public class ActivityAction extends SuperAction {
 	 */
 
 	public String execute() {
-		Activity activity = new Activity();
-		activity.setName(name);
-		activity.setDescription(description);
-		activity.setTele(tele);
-		activityService.savaActivity(activity);
+		User u = (User) session.getAttribute("login_user");
+
+		if (u != null && name != null && description != null && tele != null) {
+			Activity activity = new Activity();
+			activity.setName(name);
+			activity.setDescription(description);
+			activity.setTele(tele);
+			activity.setPublicDate(new Date());
+			activity.setUser(u.getUserName());
+			activityService.saveActivity(activity);
+		}
+		
 		return "success";
 
 	}
@@ -43,25 +53,26 @@ public class ActivityAction extends SuperAction {
 	 * @return query_
 	 * @throws IOException
 	 */
-	public String query() throws IOException {
-		int pageNum = 0, ps = 0;
-		if (currentPage == null || currentPage.length() == 0)
-			pageNum = 1;
-		else {
-			currentPage = currentPage.trim();
-			pageNum = Integer.valueOf(currentPage);
-		}
-		if (this.pageSize == null)
-			ps = 10;
-		Pager<Activity> pager = activityService.getActivities(this.searchKey, pageNum, ps);
-		if (pager.getDatalist() != null && pager.getDatalist().size() > 0) {
-			session.setAttribute("activity_list", pager);
-		} else {
-			session.setAttribute("activity_list", null);
-		}
-		return "query_success";
-
-	}
+	// public String query() throws IOException {
+	// int pageNum = 0, ps = 0;
+	// if (currentPage == null || currentPage.length() == 0)
+	// pageNum = 1;
+	// else {
+	// currentPage = currentPage.trim();
+	// pageNum = Integer.valueOf(currentPage);
+	// }
+	// if (this.pageSize == null)
+	// ps = 10;
+	// Pager<Activity> pager = activityService.getActivities(this.searchKey,
+	// pageNum, ps);
+	// if (pager.getDatalist() != null && pager.getDatalist().size() > 0) {
+	// session.setAttribute("activity_list", pager);
+	// } else {
+	// session.setAttribute("activity_list", null);
+	// }
+	// return "query_success";
+	//
+	// }
 
 	public void write() throws IOException {
 
@@ -118,7 +129,6 @@ public class ActivityAction extends SuperAction {
 	}
 
 	//
-	private ActivityService activityService = new ActivityService();
 
 	public String getName() {
 		return name;

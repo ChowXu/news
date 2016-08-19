@@ -14,15 +14,19 @@
 		<meta name="keywords" content="任务君 中国矿业大学 矿大" />
 		<meta name="author" content="Coder——zz" />
 
+		<!-- Themify Icons -->
+		<link rel="stylesheet" href="css/themify-icons.css">
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="css/bootstrap.css">
-
+		<!-- Owl Carousel -->
+		<link rel="stylesheet" href="css/owl.carousel.min.css">
 		<!-- Superfish -->
 		<link rel="stylesheet" href="css/superfish.css">
 
+		<!-- Animate.css -->
+		<link rel="stylesheet" href="css/animate.css">
 		<!-- Theme Style -->
 		<link rel="stylesheet" href="css/style.css">
-		<!--nice validator-->
 		<link rel="stylesheet" type="text/css" href="css/jquery.validator.css" />
 
 		<!-- FOR IE9 below -->
@@ -34,39 +38,35 @@
 
 	<body class="inner-page">
 
-		<!-- START #fh5co-header -->
 		<header id="fh5co-header-section" role="header" class="">
 			<div class="container">
-
-				<!-- START # logo-->
 				<h1 id="fh5co-logo" class="pull-left">
-				<a href="HomePage.html"><img src="images/logo.png"
+				<a href="homePage.html"><img src="images/logo.png"
 					alt="CUMTASSIGNMENT"></a>
 			</h1>
-
-				<!-- START #fh5co-menu-wrap -->
 				<nav id="fh5co-menu-wrap" role="navigation">
 
 					<ul class="sf-menu" id="fh5co-primary-menu">
-						<li class="active">
-							<a href="HomePage.html">首页</a>
+						<li>
+							<a href="homePage.html">首页</a>
 						</li>
 						<li>
-							<a href="#">任务区</a>
+							<a href="releaseActivity.html">任务区</a>
 						</li>
 						<li>
-							<a href="ReleaseCarpool.html">拼车区</a>
+							<a href="releaseCarpool.html">拼车区</a>
 						</li>
 						<li>
-							<a href="#">宣传推广及自助区</a>
+							<a href="releaseExpress.html">快递区</a>
 						</li>
 						<li>
 							<a href="#">帮助</a>
 						</li>
-						<li class="fh5co-special">
-							<botton>
-								<a href="Login.html">登录/注册</a>
-							</botton>
+						<li class="fh5co-special" id="login_button">
+							<a href="/Assignment_CUMT/user/register.html">登录/注册</a>
+						</li>
+						<li id="login_icon" style="display:none;">
+							<a href="userInfo.html"> 登录</a>
 						</li>
 					</ul>
 				</nav>
@@ -75,14 +75,17 @@
 		</header>
 
 		<div id="fh5co-hero">
-
+			<a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
+			<!-- End fh5co-arrow -->
 			<div class="container">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="fh5co-hero-wrap">
 						<div class="fh5co-hero-intro">
-							<h1 class="to-animate hero-animate-1">任务区</h1>
+							<h1 class="to-animate hero-animate-1">发布任务</h1>
 							<h2 class="to-animate hero-animate-2">在这里，我们会尽其所能，为您提供最优质的服务，让您足不出户便可享受便利的大学生活</h2>
-
+							<p class="to-animate hero-animate-3">
+								<a href="#" class="btn btn-outline btn-lg">Get Started</a>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -94,7 +97,7 @@
 				<div class="row">
 
 					<div class="col-md-10">
-						<form action="releaseA.action" method="get">
+						<form action="releaseA.action" method="get" class="activityForm">
 							<div class="col-md-12">
 								<div class="form-group">
 
@@ -114,7 +117,7 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="submit" class="btn btn-primary btn-lg " value="发布">
+									<input type="button" class="btn btn-primary btn-lg" onclick="checkLogin()" value="发布">
 
 								</div>
 							</div>
@@ -127,7 +130,7 @@
 
 				<div class="col-md-4">
 					<h3>我想要接任务</h3>
-					<p></p>
+
 					<p>
 						<a href="showActivity" style="border: 0">查看最近任务</a>
 					</p>
@@ -141,12 +144,51 @@
 
 		<script src="js/jquery-1.10.2.min.js"></script>
 		<script src="js/jquery.validator.min.js?local=zh-CN"></script>
-		<script type="text/javascrip">
-			var 
-			
-		</script>"
-		
-		
+
+		<!-- Bootstrap -->
+
+		<!-- Owl carousel -->
+		<script src="js/owl.carousel.min.js"></script>
+		<!-- Magnific Popup -->
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<!-- Superfish -->
+		<script src="js/superfish.js"></script>
+		<!-- Easy Responsive Tabs -->
+		<script src="js/easyResponsiveTabs.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!--<!-- Main JS -->
+		<script src="js/main.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.post("getSession", null, function(data) {
+					if(data == null) {
+
+					} else {
+						$('#login_button').hide();
+						$('#login_icon a').html("hello " + data.userName);
+						$('#login_icon').show();
+
+					}
+
+				}, "json")
+
+			});
+
+			function checkLogin() {
+
+				$.post("getSession", null, function(data) {
+					if(data != null) {
+						$('.activityForm').submit();
+					} else {
+						alert('请先登录');
+						return false;
+					}
+				}, "json");
+
+			}
+		</script>
 
 	</body>
 

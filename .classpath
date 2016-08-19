@@ -11,7 +11,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/zhouxi/Desktop/Data/Jar/json-2/json-2.jar"/>
 	<classpathentry kind="lib" path="/Users/zhouxi/Desktop/Data/Jar/ezmorph-1/ezmorph-1.0.2.jar"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.struts_2.1">
 		<attributes>
@@ -26,6 +25,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_5.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/zhouxi/Desktop/Data/Jar/fastjson-1.2.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

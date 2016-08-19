@@ -29,6 +29,8 @@
 		<mapping class = "model.vo.Teacher" />   -->
 		<mapping class = "com.assignment.model.Activity" />
 		<mapping class = "com.assignment.model.Carpool" />
+		<mapping class = "com.assignment.model.Express" /> 
+		<mapping class = "com.assignment.model.User" />
 		
 
 	</session-factory>

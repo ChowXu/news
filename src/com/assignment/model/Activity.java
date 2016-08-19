@@ -1,6 +1,7 @@
 package com.assignment.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ public class Activity implements Serializable {
 	private String description;
 	private String tele;
 	private String user;
+	private Date publicDate;
 
 	public String getUser() {
 		return user;
@@ -64,6 +66,19 @@ public class Activity implements Serializable {
 
 	public void setTele(String tele) {
 		this.tele = tele;
+	}
+
+	public Date getPublicDate() {
+		return publicDate;
+	}
+
+	public void setPublicDate(Date publicDate) {
+		this.publicDate = publicDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Activity [id=" + id + ", name=" + name + ", description=" + description + ", tele=" + tele + ", user=" + user + ", publicDate=" + publicDate + "]";
 	}
 
 }

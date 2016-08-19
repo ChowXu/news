@@ -2,9 +2,9 @@
     <wb-module deploy-name="Assignment_CUMT">
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="/Assignment_CUMT"/>
         <property name="java-output-path" value="/Assignment_CUMT/WebRoot/WEB-INF/classes"/>
         <property name="me-struts-base-pkg"/>
+        <property name="context-root" value="/Assignment_CUMT"/>
         <property name="me-merge-utility-modules" value="true"/>
     </wb-module>
 </project-modules>

@@ -1,20 +1,46 @@
 package com.assignment.model;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+
+
+/**
+ * @author zhouxi
+ *
+ */
 @Entity
 public class Carpool {
 
+
 	private int id;
-	private Date beginDate;
+	private String beginDate;
 	private String beginArea;
 	private String destination;
-	private int signed;
-	private int signing;
+	private String tele;
+	private String signed;
+	private String User;
+
+
+	public String getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(String beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public String getSigning() {
+		return signing;
+	}
+
+	public void setSigning(String signing) {
+		this.signing = signing;
+	}
+
+	private String signing;    //  
 	private String user;
 	private Date publishDate;
 
@@ -28,13 +54,6 @@ public class Carpool {
 		this.id = id;
 	}
 
-	public Date getBeginDate() {
-		return beginDate;
-	}
-
-	public void setBeginDate(Date beginDate) {
-		this.beginDate = beginDate;
-	}
 
 	public String getBeginArea() {
 		return beginArea;
@@ -52,20 +71,12 @@ public class Carpool {
 		this.destination = destination;
 	}
 
-	public int getSigned() {
+	public String getSigned() {
 		return signed;
 	}
 
-	public void setSigned(int signed) {
+	public void setSigned(String signed) {
 		this.signed = signed;
-	}
-
-	public int getSigning() {
-		return signing;
-	}
-
-	public void setSigning(int signing) {
-		this.signing = signing;
 	}
 
 	public String getUser() {
@@ -82,6 +93,20 @@ public class Carpool {
 
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
+	}
+
+	public String getTele() {
+		return tele;
+	}
+
+	public void setTele(String tele) {
+		this.tele = tele;
+	}
+
+	@Override
+	public String toString() {
+		return "Carpool [id=" + id + ", beginDate=" + beginDate + ", beginArea=" + beginArea + ", destination=" + destination + ", tele=" + tele + ", signed=" + signed
+				+ ", signing=" + signing + ", user=" + user + ", publishDate=" + publishDate + "]";
 	}
 
 }

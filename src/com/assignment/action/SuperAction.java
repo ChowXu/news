@@ -1,7 +1,6 @@
 package com.assignment.action;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +14,10 @@ import com.opensymphony.xwork2.ActionSupport;
 public class SuperAction extends ActionSupport implements ServletRequestAware,
 		ServletResponseAware, ServletContextAware {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public HttpServletRequest request;
 	public HttpServletResponse response;
 	public HttpSession session;
@@ -30,6 +33,7 @@ public class SuperAction extends ActionSupport implements ServletRequestAware,
 	@Override
 	public void setServletResponse(HttpServletResponse response) {
 		this.response = response;
+		
 	}
 
 	@Override

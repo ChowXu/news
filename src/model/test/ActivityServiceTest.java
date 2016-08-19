@@ -1,55 +1,35 @@
 package model.test;
 
 import java.io.IOException;
-import java.util.List;
-
-import net.sf.json.JSONObject;
-
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.SessionFactory;
-import org.junit.Before;
 import org.junit.Test;
-
 import com.assignment.model.Activity;
-import com.assignment.model.Carpool;
 import com.assignment.model.Pager;
 import com.assignment.servive.ActivityService;
-import com.assignment.servive.CarpoolService;
 
 public class ActivityServiceTest {
 
-	private static SessionFactory sessionFactory;
 
-	@Before
-	public void boforeClass() {
-		sessionFactory = new AnnotationConfiguration().configure()
-				.buildSessionFactory();
 
-		// sessionFactory = new AnnotationConfiguration().configure()
-		// .buildSessionFactory();
-	}
-
-	
-	
 	@Test
-	public void test() throws IOException {
+	public void testSavaActivity() throws IOException {
+		ActivityService service = new ActivityService();
+		for (int i = 0; i < 20; i++) {
+			Activity activity = new Activity();
+			activity.setName("张三");
+			activity.setTele("15" + String.valueOf((long) (Math.random() * 1000000000)));
+			activity.setDescription("上课" + String.valueOf(Math.random() * 10));
+			activity.setUser("wang");
+			service.saveActivity(activity);
 
+		}
+		Pager<Activity> pager = service.getActivities(null, 1, 15);
+		for(Activity a : pager.getDatalist())
+			System.out.println(a.toString());
 
-		ActivityService  activityService = new ActivityService();
-		Pager<Activity> activitylist = activityService.getActivities("课",1,10);
-		
-		System.out.println(activitylist.toString());
-
-		
-
-//		for (Carpool carpool : list) {
-//			System.out.println(carpool.getId());
-//			System.out.println(carpool.getBeginArea());
-//			System.out.println(carpool.getDestination());
-//			System.out.println(carpool.getSigned());
-//
-//		}
+	
 
 	}
+
+	
 
 }
